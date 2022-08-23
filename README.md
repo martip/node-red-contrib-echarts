@@ -12,11 +12,11 @@ Either use the `Node-RED Menu - Manage Palette - Install`, or run the following 
 
 You pass the chart configuration in the `msg.payload`.
 
-Please refer to ECharts documentation.
+Please refer to the ECharts documentation.
 
 ## Example
 
-~~~json
+~~~
 msg.payload = {
   title: {
     text: 'ECharts Getting Started Example'
