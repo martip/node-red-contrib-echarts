@@ -1,0 +1,72 @@
+<script type="text/html" data-template-name="echarts">
+  <div class="form-row">
+      <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+      <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-width"><i class="fa fa-arrows-h"></i> Width</label>
+    <input type="text" id="node-input-width" placeholder="1024">
+    <input type="hidden" id="node-input-width-type">
+  </div>
+  <div class="form-row">
+    <label for="node-input-height"><i class="fa fa-arrows-v" style="width: 14px; text-align: center;"></i> Height</label>
+    <input type="text" id="node-input-height" placeholder="768">
+    <input type="hidden" id="node-input-height-type">
+  </div>
+</script>
+
+<script type="text/html" data-help-name="echarts">
+  <p>A function that creates an SVG chart, based on the configuration found in <code>msg.payload</code>, using the <strong>Apache ECharts</strong> library.</p>
+  <h3>Inputs</h3>
+  <dl class="message-properties">
+    <dt>payload <span class="property-type">object</span></dt>
+    <dd>The chart configuration.</dd>
+  </dl>
+
+  <h3>Outputs</h3>
+
+  <dl class="message-properties">
+    <dt>payload <span class="property-type">string</span></dt>
+    <dd>The source code of the SVG chart.</dd>
+  </dl>
+
+  <h3>References</h3>
+
+  <ul>
+    <li><a href="https://echarts.apache.org/">Apache ECharts</a> - details of the <strong>Apache ECharts</strong> library</li>
+  </ul>
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType('echarts', {
+    category: 'function',
+    color:'#CF5E6E',
+    defaults: {
+      name: { value: '' },
+      width: { value: 1024 },
+      height: { value: 768 }
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: 'echarts.svg',
+    label: function() {
+      return this.name || 'echarts' ;
+    },
+    labelStyle: function() {
+      return this.name ? 'node_label_italic' : '';
+    },
+    paletteLabel: 'echarts',
+    oneditprepare: () => {
+      $('#node-input-width').typedInput({
+        type: 'num',
+        types:['num'],
+        typeField: "#node-input-width-type"
+      });
+      $('#node-input-height').typedInput({
+        type: 'num',
+        types:['num'],
+        typeField: "#node-input-height-type"
+      });
+    }
+  });
+</script>
